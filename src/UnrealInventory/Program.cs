@@ -31,14 +31,30 @@ catch (Exception ex) { Log.Warning("Oodle initialization unavailable: {Message}"
 using var provider = new DefaultFileProvider(input, SearchOption.TopDirectoryOnly, new VersionContainer(game), StringComparer.OrdinalIgnoreCase);
 provider.Initialize();
 var registered = provider.UnloadedVfs.ToArray();
-provider.Mount();
+var diagnostics = new List<object>();
+var expected = Directory.EnumerateFiles(input).Where(p => Path.GetExtension(p).ToLowerInvariant() is ".pak" or ".utoc").ToArray();
+foreach (var path in expected.Where(p => !registered.Any(r => r.Name.Equals(Path.GetFileName(p), StringComparison.OrdinalIgnoreCase))))
+    diagnostics.Add(new { stage="registration", archive=Path.GetFileName(path), error="Reader not registered; see parser.log" });
+var fallbackMounted = new HashSet<IAesVfsReader>();
+try { provider.Mount(); }
+catch (Exception ex)
+{
+    diagnostics.Add(new {stage="provider-mount",error=ex.Message});
+    Log.Warning(ex,"Global mount failed; attempting directory indexes independently");
+    foreach (var reader in registered.Where(r => r.HasDirectoryIndex && !provider.MountedVfs.Contains(r)))
+    {
+        if (reader.IsEncrypted && provider.CustomEncryption == null) continue;
+        try { reader.MountTo(provider.Files, StringComparer.OrdinalIgnoreCase); fallbackMounted.Add(reader); }
+        catch (Exception failure) { diagnostics.Add(new {stage="directory-mount",archive=reader.Name,error=failure.Message}); }
+    }
+}
 var aesFile = Environment.GetEnvironmentVariable("UE_INVENTORY_AES_FILE");
 if (!string.IsNullOrEmpty(aesFile))
 {
     var keys = JsonSerializer.Deserialize<Dictionary<string,string>>(File.ReadAllText(aesFile))!;
     foreach (var pair in keys) provider.SubmitKey(new FGuid(pair.Key), new FAesKey(pair.Value));
 }
-var mounted = provider.MountedVfs.ToHashSet();
+var mounted = provider.MountedVfs.Concat(fallbackMounted).ToHashSet();
 var readers = registered.Concat(provider.MountedVfs).Concat(provider.UnloadedVfs).Distinct().OrderBy(r => r.Name).ToArray();
 var archives = readers.Select(r => new {
     name = r.Name, mounted = mounted.Contains(r), encryptedIndex = r.IsEncrypted,
@@ -108,6 +124,7 @@ foreach (var file in files.Where(f => metadataExtensions.Contains(f.Extension) |
 }
 Save("metadata-manifest.json",metadata);
 Save("registries.json",registryStats);
+Save("scan-diagnostics.json",diagnostics);
 var summary = new {profile=game.ToString(),profileValue=(int)game,archiveReaders=readers.Length,mountedReaders=mounted.Count,effectiveFiles=files.Length,encryptedIndexedFiles=files.Count(f=>f.IsEncrypted),metadataCandidates=metadata.Count,registries=registryStats.Count,requiredKeyGuids=provider.RequiredKeys.Select(g=>g.ToString()).ToArray()};
 Save("scan-summary.json",summary);
 Console.WriteLine(JsonSerializer.Serialize(summary,jsonOptions));

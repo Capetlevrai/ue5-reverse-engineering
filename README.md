@@ -32,7 +32,7 @@ Les autres profils FModel sont conservés ; une sauvegarde des paramètres est c
 - [Méthode de bout en bout](docs/procedure.md) : identification des conteneurs, profils moteur, chiffrement, métadonnées, interprétation et vérification.
 - [Formats de sortie et limitations](docs/results.md).
 - [Ajouter un autre jeu](docs/new-game.md).
-- Retours d'expérience : [Bodycam](docs/games/bodycam.md), [FINAL FANTASY VII REBIRTH](docs/games/ff7-rebirth.md), [EMPULSE](docs/games/empulse.md).
+- Retours d'expérience : [Bodycam](docs/games/bodycam.md), [FINAL FANTASY VII REBIRTH](docs/games/ff7-rebirth.md), [EMPULSE](docs/games/empulse.md), [Split Fiction](docs/games/split-fiction.md), [ARC Raiders](docs/games/arc-raiders.md).
 
 ## Résultats observés le 11 septembre 2026
 
@@ -41,6 +41,9 @@ Les autres profils FModel sont conservés ; une sauvegarde des paramètres est c
 | Bodycam | 86 PAK | 114 132 | 224 (24 projet / 200 moteur) | Index et registre lisibles ; 106 INI chiffrés |
 | FF VII REBIRTH | 50 PAK + 51 paires IoStore | 841 364 | 73 (21 projet / 52 moteur) | Index et 129 métadonnées lisibles ; registre absent des index |
 | EMPULSE | 4 PAK + 5 paires IoStore | Indisponible | Indisponible | 8 index chiffrés ; inventaire des fichiers hors archives disponible |
+
+| Split Fiction | 9 PAK + 10 paires IoStore | 282 110 | 102 (4 projet / 98 moteur) | Registre lisible ; 15 812 scripts AngelScript livrés |
+| ARC Raiders | 28 PAK + 29 paires IoStore | 187 220, couverture partielle | Indisponible | Index IoStore lisibles indépendamment ; PAK non reconnus et données globales illisibles |
 
 Les `.ucas` sont les données des `.utoc` : les deux fichiers d'une paire ne constituent pas deux index indépendants. `global.utoc` peut ne contenir aucun index de répertoires exploitable.
 

@@ -1,0 +1,8 @@
+{
+  "id": "split-fiction",
+  "name": "Split Fiction",
+  "project": "Split",
+  "paks": "Split/Content/Paks",
+  "cue4parse_game": "GAME_SplitFiction",
+  "version_evidence": "Dedicated CUE4Parse profile, based on UE5.4 compatibility; confirm exact build from shipped metadata"
+}
