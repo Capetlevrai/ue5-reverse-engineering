@@ -1,0 +1,8 @@
+{
+  "id": "bodycam",
+  "name": "Bodycam",
+  "project": "Bodycam",
+  "paks": "Bodycam/Content/Paks",
+  "cue4parse_game": "GAME_UE5_5",
+  "version_evidence": "EngineAssociation=5.5 in the shipped Bodycam.uproject"
+}

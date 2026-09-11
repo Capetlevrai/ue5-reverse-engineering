@@ -1,0 +1,8 @@
+{
+  "id": "ff7-rebirth",
+  "name": "FINAL FANTASY VII REBIRTH",
+  "project": "End",
+  "paks": "End/Content/Paks",
+  "cue4parse_game": "GAME_FinalFantasy7Rebirth",
+  "version_evidence": "Game-specific CUE4Parse profile; its UE4.26 compatibility base is not independent proof of the exact engine build"
+}

@@ -1,0 +1,8 @@
+{
+  "id": "empulse",
+  "name": "EMPULSE",
+  "project": "Orion",
+  "paks": "Orion/Content/Paks",
+  "cue4parse_game": "GAME_UE5_LATEST",
+  "version_evidence": "Exact engine version unconfirmed. Generic latest UE5 profile used only to inspect container headers; revisit after decrypting the indexes."
+}

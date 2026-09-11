@@ -1,0 +1,32 @@
+[
+  {
+    "name": "repak",
+    "version": "v0.2.3",
+    "url": "https://github.com/trumank/repak/releases/download/v0.2.3/repak_cli-x86_64-pc-windows-msvc.zip",
+    "sha256": "6720d602144d75df477a99d5bedb6ea780997546afc335901d4937cafeaa73fa"
+  },
+  {
+    "name": "FModel",
+    "version": "aug-2026",
+    "url": "https://github.com/4sval/FModel/releases/download/aug-2026/FModel.zip",
+    "sha256": "ce1995fbc876cd0d0f54d3f7af5babc0e949d87fe4c4f2fada55c6e1e062eacc"
+  },
+  {
+    "name": "UAssetGUI",
+    "version": "v1.1.0",
+    "url": "https://github.com/atenfyr/UAssetGUI/releases/download/v1.1.0/UAssetGUI.exe",
+    "sha256": "b7d75c0893f1a60e565853ae638bc21f2416cd12c2d9d854e297abb87ceb3263"
+  },
+  {
+    "name": "retoc",
+    "version": "v0.1.5",
+    "url": "https://github.com/trumank/retoc/releases/download/v0.1.5/retoc_cli-x86_64-pc-windows-msvc.zip",
+    "sha256": "cc036b06ad3bdcf7003690b00d82719980c374e48a95bf0654f9959148d263aa"
+  },
+  {
+    "name": "UModel",
+    "version": "build-1590",
+    "url": "https://raw.githubusercontent.com/gildor2/UEViewer/008f4dd554e0a03f7a43462a88bec822ec1aee7d/umodel.exe",
+    "sha256": "13502e5a4d8f6b5f32252afebd6360f7302ccfaccf6b8dda65beff0be2d364a0"
+  }
+]
