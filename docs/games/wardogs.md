@@ -66,6 +66,18 @@ Les diagnostics et candidates restent dans `.tools/research/wardogs/`, ignoré p
 - La [politique officielle de Wardogs](https://www.wardogs.com/enforcement) décrit un navigateur de serveurs, des serveurs officiels et des serveurs communautaires loués à des hébergeurs.
 - Les fichiers du client livrent `VivoxCore/vivoxsdk.dll`, indice de l'intégration du SDK de communication Vivox ; ce n'est pas une preuve du système qui réplique les acteurs de gameplay.
 - Les configurations locales lisibles ne donnent aucun résultat pour `Iris`, `ReplicationGraph`, `ReplicationDriver`, `NetDriver`, `OnlineSubsystem` ou `SteamSockets`. Aucun journal de jeu `.log` exploitable n'a été trouvé dans le dossier local `Wardogs` lors de cette passe.
-- **Le système de réplication exact, le NetDriver, le tickrate serveur, la prédiction et la compensation de latence ne sont pas établis.** La version de sauvegarde UE5.7.4 ne prouve pas l'utilisation d'Iris.
+- **Le système de réplication sous-jacent, le NetDriver, le tickrate serveur et les détails de prédiction/compensation de latence ne sont pas établis.** Une architecture de prédiction côté client est néanmoins confirmée par le témoignage technique ci-dessous. La version de sauvegarde UE5.7.4 ne prouve pas l'utilisation d'Iris.
 
 [La documentation Epic](https://dev.epicgames.com/documentation/unreal-engine/introduction-to-iris-in-unreal-engine) précise qu'Iris est un choix explicite. [Iris et Replication Graph sont deux systèmes distincts](https://dev.epicgames.com/documentation/unreal-engine/migrate-to-iris-in-unreal-engine) ; on ne peut pas attribuer l'un ou l'autre au jeu sans configuration, symboles ou traces probantes.
+
+### Source directe : Salty Panda Studios
+
+La [fiche Wardogs publiée par Salty Panda Studios](https://saltypandastudios.com/wardogs-bulkhead/), consultée le 11 septembre 2026, contient un témoignage attribué à **Chris Eaves, Technical Director chez BULKHEAD**. Il explique avoir confié au partenaire des problèmes difficiles de réplication et confirme la livraison d'une architecture unifiée de prédiction côté client, accompagnée d'outils de gestion. Le témoignage souligne également leur travail d'optimisation bas niveau et leur connaissance du réseau de gameplay Unreal.
+
+Extrait : « unified client side prediction architecture ».
+
+Cette source permet d'identifier un prestataire et une contribution technique concrète au netcode de Wardogs. Elle ne nomme ni Iris, ni Replication Graph, ni le plugin Epic Network Prediction ; elle ne décrit pas non plus l'implémentation complète du build installé. Une architecture de prédiction peut s'appuyer sur un système de réplication existant : ce témoignage n'établit pas le remplacement de toute la couche réseau Unreal.
+
+### Cadre général : War Dynamics Framework
+
+Le communiqué BULKHEAD/Team17 du 5 février 2026, [reproduit intégralement par Saving Content](https://www.savingcontent.com/2026/02/05/wardogs-announced-by-bulkhead-and-team17-this-new-tactical-fps-is-enters-early-access-this-year/), présente le **War Dynamics Framework** comme un framework propriétaire construit sur Unreal Engine pour soutenir le jeu à grande échelle, les véhicules, les armes et les systèmes persistants. Ce nom décrit un ensemble technologique plus large ; il ne suffit pas à identifier l'algorithme de réplication ou à rattacher précisément la contribution de Salty Panda à un module particulier.
