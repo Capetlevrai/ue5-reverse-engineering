@@ -1,0 +1,8 @@
+{
+  "id": "wardogs",
+  "name": "Wardogs",
+  "project": "Wardogs",
+  "paks": "Wardogs/Content/Paks",
+  "cue4parse_game": "GAME_UE5_7",
+  "version_evidence": "Shipped loose .uasset headers contain serialized engine version 5.7.4 and branch ++Wardogs+EarlyAccess-0.1; executable reports ++Wardogs+Live-CL-499738. GAME_UE5_7 selected; encrypted indexes remain unavailable without a valid local key."
+}

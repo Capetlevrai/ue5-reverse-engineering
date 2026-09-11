@@ -32,7 +32,7 @@ Les autres profils FModel sont conservés ; une sauvegarde des paramètres est c
 - [Méthode de bout en bout](docs/procedure.md) : identification des conteneurs, profils moteur, chiffrement, métadonnées, interprétation et vérification.
 - [Formats de sortie et limitations](docs/results.md).
 - [Ajouter un autre jeu](docs/new-game.md).
-- Retours d'expérience : [Bodycam](docs/games/bodycam.md), [FINAL FANTASY VII REBIRTH](docs/games/ff7-rebirth.md), [EMPULSE](docs/games/empulse.md), [Split Fiction](docs/games/split-fiction.md), [ARC Raiders](docs/games/arc-raiders.md).
+- Retours d'expérience : [Bodycam](docs/games/bodycam.md), [FINAL FANTASY VII REBIRTH](docs/games/ff7-rebirth.md), [EMPULSE](docs/games/empulse.md), [Split Fiction](docs/games/split-fiction.md), [ARC Raiders](docs/games/arc-raiders.md), [Wardogs](docs/games/wardogs.md).
 
 ## Résultats observés le 11 septembre 2026
 
@@ -44,6 +44,8 @@ Les autres profils FModel sont conservés ; une sauvegarde des paramètres est c
 
 | Split Fiction | 9 PAK + 10 paires IoStore | 282 110 | 102 (4 projet / 98 moteur) | Registre lisible ; 15 812 scripts AngelScript livrés |
 | ARC Raiders | 28 PAK + 29 paires IoStore | 187 220, couverture partielle | Indisponible | Index IoStore lisibles indépendamment ; PAK non reconnus et données globales illisibles |
+
+| Wardogs | 16 PAK + 17 paires IoStore | 2 chemins optionnels | Indisponible ; 6 familles identifiées par les binaires | 31 index chiffrés |
 
 Les `.ucas` sont les données des `.utoc` : les deux fichiers d'une paire ne constituent pas deux index indépendants. `global.utoc` peut ne contenir aucun index de répertoires exploitable.
 
