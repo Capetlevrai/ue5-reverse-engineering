@@ -50,3 +50,22 @@ Get-ChildItem 'D:\SteamLibrary\steamapps\common\Wardogs\Wardogs\Plugins' -Recurs
 ```
 
 Les tailles et dates de modification de l'installation sont inchangées avant/après le scan. Les fichiers bruts et données extraites restent locaux et ignorés par Git.
+
+## Tentative de récupération de clé sur disque
+
+Une passe supplémentaire a examiné l'exécutable du client, le lanceur, `coreinit.dll` et `runtime.dll`. Quatre signatures d'initialisation de constantes, documentées dans le [code d'aesdumpster-rs](https://github.com/yuhkix/aesdumpster-rs/blob/main/src/key_dumpster.rs), ont été recherchées avec un script local, ainsi que les chaînes ASCII hexadécimales de 64 caractères. Le code d'[UEAESKeyFinder](https://github.com/EZFNDEV/UEAESKeyFinder) a été examiné ; son programme n'a pas été lancé.
+
+Résultat : **7 candidates brutes**, soit 26 valeurs distinctes en tenant compte des variantes d'ordre des octets/mots. Elles ont été testées en AES-ECB sur le début des **16 index PAK chiffrés** : aucune ne produit un point de montage Unreal plausible. Aucune clé n'est validée, et les archives ne sont pas débloquées.
+
+L'exécutable principal possède des sections `.text`, `.data` et `.pdata` d'entropie voisine de 8 bits/octet et n'importe que `coreinit.dll`. `runtime.dll` comporte des sections nommées `packer0`, `packer1`, etc. Ces observations suggèrent un emballage ou une protection du code ; elles ne déterminent pas à elles seules l'algorithme ou la façon dont la clé d'archives est fournie. L'entropie d'une candidate n'est jamais considérée comme une validation cryptographique.
+
+Les diagnostics et candidates restent dans `.tools/research/wardogs/`, ignoré par Git. Une clé valide, une version du client dont le code est directement analysable ou des données de diagnostic adaptées restent nécessaires pour poursuivre. Le résultat de cette tentative est négatif, pas une preuve que la clé ne peut jamais être récupérée.
+
+## Multijoueur et réplication : ce qui est établi
+
+- La [politique officielle de Wardogs](https://www.wardogs.com/enforcement) décrit un navigateur de serveurs, des serveurs officiels et des serveurs communautaires loués à des hébergeurs.
+- Les fichiers du client livrent `VivoxCore/vivoxsdk.dll`, indice de l'intégration du SDK de communication Vivox ; ce n'est pas une preuve du système qui réplique les acteurs de gameplay.
+- Les configurations locales lisibles ne donnent aucun résultat pour `Iris`, `ReplicationGraph`, `ReplicationDriver`, `NetDriver`, `OnlineSubsystem` ou `SteamSockets`. Aucun journal de jeu `.log` exploitable n'a été trouvé dans le dossier local `Wardogs` lors de cette passe.
+- **Le système de réplication exact, le NetDriver, le tickrate serveur, la prédiction et la compensation de latence ne sont pas établis.** La version de sauvegarde UE5.7.4 ne prouve pas l'utilisation d'Iris.
+
+[La documentation Epic](https://dev.epicgames.com/documentation/unreal-engine/introduction-to-iris-in-unreal-engine) précise qu'Iris est un choix explicite. [Iris et Replication Graph sont deux systèmes distincts](https://dev.epicgames.com/documentation/unreal-engine/migrate-to-iris-in-unreal-engine) ; on ne peut pas attribuer l'un ou l'autre au jeu sans configuration, symboles ou traces probantes.
